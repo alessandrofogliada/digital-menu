@@ -15,13 +15,16 @@
             --nav-bg: rgba(255, 255, 255, 0.9);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
             padding-bottom: 110px;
-            scroll-behavior: smooth;
         }
 
         header {
@@ -29,6 +32,9 @@
             padding: 20px 0;
             background: var(--header-bg);
             border-bottom: 1px solid rgba(166, 77, 45, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
         }
 
         .logo-text {
@@ -57,7 +63,6 @@
             animation: fadeIn 0.8s ease;
         }
 
-        /* --- STILE LOADER --- */
         #loader {
             display: flex;
             flex-direction: column;
@@ -83,19 +88,18 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* FILTRI E MENU */
         .sub-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; animation: fadeIn 0.5s ease; }
         .sub-filter-btn {
             background: transparent; border: 1px solid rgba(166, 77, 45, 0.2);
             color: var(--text); padding: 6px 14px; border-radius: 15px;
             font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
-            text-decoration: none;
+            cursor: pointer;
         }
 
         .subcat-header {
             font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
             color: #ccc; margin: 45px 0 15px; border-bottom: 1px solid rgba(166, 77, 45, 0.08);
-            padding-bottom: 5px; scroll-margin-top: 100px;
+            padding-bottom: 5px;
         }
 
         .menu-item {
@@ -112,7 +116,6 @@
         .item-meta { font-size: 10px; color: #aaa; display: flex; flex-wrap: wrap; gap: 12px; text-transform: uppercase; }
         .meta-label { font-weight: 700; color: #888; }
 
-        /* NAVBAR */
         nav {
             position: fixed; bottom: 0; left: 0; right: 0;
             background: var(--nav-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -209,6 +212,21 @@
         `).join('');
     }
 
+    // Funzione per lo scroll dolce con Offset
+    function scrollToSubcat(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            const headerOffset = 100; // Spazio per l'header fisso
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
     function renderMenu(cat) {
         currentCat = cat;
         document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
@@ -234,12 +252,17 @@
 
         if(validSubcats.length > 0) {
             html += `<div class="sub-filters">`;
-            validSubcats.forEach(sc => { html += `<a href="#sc-${sc.replace(/\s/g, '')}" class="sub-filter-btn">${sc}</a>`; });
+            validSubcats.forEach(sc => { 
+                const safeId = `sc-${sc.replace(/\s/g, '')}`;
+                html += `<button onclick="scrollToSubcat('${safeId}')" class="sub-filter-btn">${sc}</button>`; 
+            });
             html += `</div>`;
         }
 
         subcats.forEach(sc => {
-            if (sc !== "Main") { html += `<div id="sc-${sc.replace(/\s/g, '')}" class="subcat-header">${sc}</div>`; }
+            if (sc !== "Main") { 
+                html += `<div id="sc-${sc.replace(/\s/g, '')}" class="subcat-header">${sc}</div>`; 
+            }
             grouped[sc].forEach(item => {
                 const keys = Object.keys(item);
                 const name = item[keys[1 + (currentLang === 'EN' ? 1 : (currentLang === 'DE' ? 2 : 0))]] || item[keys[1]];
