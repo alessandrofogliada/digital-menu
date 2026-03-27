@@ -12,24 +12,23 @@
             --text: #2b1d1a;
             --accent: #a64d2d;
             --header-bg: #fdfaf7;
-            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-bg: #2b1d1a; 
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            padding-bottom: 110px;
+            padding-bottom: 120px;
         }
 
+        /* --- HEADER --- */
         header {
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0 20px;
             background: var(--header-bg);
             border-bottom: 1px solid rgba(166, 77, 45, 0.1);
             position: sticky;
@@ -37,104 +36,96 @@
             z-index: 1001;
         }
 
+        .logo-img {
+            max-width: 110px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
         .logo-text {
             font-family: 'Special Elite', cursive;
-            font-size: 22px;
+            font-size: 20px;
             color: var(--accent);
             letter-spacing: 2px;
             margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         .lang-switcher { display: flex; justify-content: center; gap: 25px; }
-        .lang-btn { font-size: 22px; cursor: pointer; opacity: 0.4; transition: 0.3s; }
+        .lang-btn { font-size: 22px; cursor: pointer; opacity: 0.3; transition: 0.3s; }
         .lang-btn.active { opacity: 1; transform: scale(1.2); }
 
+        /* --- CONTENUTI --- */
         .container { padding: 15px; max-width: 600px; margin: auto; }
 
         .category-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
+            font-size: 36px;
             color: var(--accent);
             text-align: center;
-            margin: 40px 0 10px;
+            margin: 40px 0 20px;
             font-weight: 600;
-            letter-spacing: -1px;
-            text-transform: capitalize;
-            animation: fadeIn 0.8s ease;
-        }
-
-        #loader {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 0;
-            color: var(--accent);
-            font-size: 10px;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        .spinner {
-            width: 30px;
-            height: 30px;
-            border: 2px solid rgba(166, 77, 45, 0.1);
-            border-top: 2px solid var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 15px;
-        }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .sub-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; animation: fadeIn 0.5s ease; }
-        .sub-filter-btn {
-            background: transparent; border: 1px solid rgba(166, 77, 45, 0.2);
-            color: var(--text); padding: 6px 14px; border-radius: 15px;
-            font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
-            cursor: pointer;
+            text-transform: uppercase;
         }
 
         .subcat-header {
-            font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            color: #ccc; margin: 45px 0 15px; border-bottom: 1px solid rgba(166, 77, 45, 0.08);
+            font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            color: #aaa; margin: 35px 0 10px; border-bottom: 1px solid rgba(166, 77, 45, 0.08);
             padding-bottom: 5px;
         }
 
         .menu-item {
             display: flex; justify-content: space-between; align-items: flex-start;
             padding: 15px 0; border-bottom: 1px solid rgba(166, 77, 45, 0.05);
-            animation: fadeIn 0.5s ease;
         }
 
         .item-details { flex: 1; padding-right: 20px; }
-        .item-name { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
-        .item-desc { font-size: 13px; color: #777; font-weight: 300; line-height: 1.4; margin-bottom: 5px; }
-        .item-price { font-weight: 700; color: var(--accent); font-size: 16px; }
-        
-        .item-meta { font-size: 10px; color: #aaa; display: flex; flex-wrap: wrap; gap: 12px; text-transform: uppercase; }
-        .meta-label { font-weight: 700; color: #888; }
+        .item-name { font-weight: 700; font-size: 16px; margin-bottom: 3px; }
+        .item-desc { font-size: 13px; color: #777; font-weight: 300; line-height: 1.4; }
+        .item-price { font-weight: 700; color: var(--accent); font-size: 16px; white-space: nowrap; }
 
+        /* --- FLOATING NAVBAR --- */
         nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: var(--nav-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            display: flex; overflow-x: auto; padding: 18px 10px; gap: 10px;
-            border-top: 1px solid rgba(166, 77, 45, 0.1); z-index: 1000; scrollbar-width: none;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--nav-bg);
+            padding: 6px;
+            border-radius: 50px;
+            display: flex;
+            gap: 5px;
+            z-index: 2000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
-        nav::-webkit-scrollbar { display: none; }
+
         nav button {
-            background: none; border: 1px solid rgba(166, 77, 45, 0.15);
-            color: var(--text); padding: 10px 20px; border-radius: 25px;
-            white-space: nowrap; font-family: 'Montserrat', sans-serif;
-            font-size: 12px; font-weight: 400; cursor: pointer; transition: 0.3s;
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        nav button.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 4px 12px rgba(166, 77, 45, 0.25); }
+
+        nav button.active { background: var(--accent); color: white; }
+
+        #loader { text-align: center; padding: 100px 0; }
+        .spinner { width: 30px; height: 30px; border: 2px solid #ddd; border-top: 2px solid var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 15px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
 <header>
+    <img src="logo.png" alt="Logo Bar Povero Diavolo" class="logo-img">
     <div class="logo-text">BAR POVERO DIAVOLO</div>
     <div class="lang-switcher">
         <span class="lang-btn active" onclick="changeLang('IT')" id="l-IT">🇮🇹</span>
@@ -151,22 +142,43 @@
     <div id="menu-content"></div>
 </div>
 
-<nav id="tabs"></nav>
+<nav id="floating-nav">
+    <button onclick="renderMacro('BEVANDE')" id="btn-BEVANDE">
+        <span>☕</span> <span class="btn-txt">BEVANDE</span>
+    </button>
+    <button onclick="renderMacro('CIBO')" id="btn-CIBO">
+        <span>🍝</span> <span class="btn-txt">CIBO</span>
+    </button>
+</nav>
 
 <script>
     const GIDS = {
-        'Caffetteria': '0',
-        'Bevande': '1449858284', 
-        'Aperitivi': '2008785960',
-        'Birre_e_Vino': '1805107999',
-        'Cocktail': '2080510881',
-        'Cucina': '1144090031'
+        'Caffetteria': '0', 'Bevande': '1449858284', 'Aperitivi': '2008785960',
+        'Birre_e_Vino': '1805107999', 'Cocktail': '2080510881', 'Cucina': '1144090031'
+    };
+
+    const MACROS = {
+        'BEVANDE': ['Caffetteria', 'Bevande', 'Aperitivi', 'Birre_e_Vino', 'Cocktail'],
+        'CIBO': ['Cucina']
+    };
+
+    // ELENCO COMPLETO DELLE TRADUZIONI SOTTOCATEGORIE
+    const subcatTranslations = {
+        'Caffè': { IT: 'Caffè', EN: 'Coffee', DE: 'Kaffee' },
+        'Tisane': { IT: 'Tisane', EN: 'Herbal Teas', DE: 'Kräutertees' },
+        'Brioches / Torte': { IT: 'Brioches / Torte', EN: 'Pastries & Cakes', DE: 'Gebäck & Kuchen' },
+        'Piatti Caldi': { IT: 'Piatti Caldi', EN: 'Hot Dishes', DE: 'Warme Speisen' },
+        'Piatti freddi': { IT: 'Piatti freddi', EN: 'Cold Dishes', DE: 'Kalte Speisen' },
+        'Birre alla spina': { IT: 'Birre alla spina', EN: 'Draft Beers', DE: 'Biere vom Fass' },
+        'Birre in bottiglia': { IT: 'Birre in bottiglia', EN: 'Bottled Beers', DE: 'Flaschenbiere' },
+        'Vino Bianco': { IT: 'Vino Bianco', EN: 'White Wine', DE: 'Weisswein' },
+        'Vino Rosso': { IT: 'Vino Rosso', EN: 'Red Wine', DE: 'Rotwein' }
     };
 
     const uiTexts = {
-        'IT': { loader: "CARICAMENTO", info: "INFO", allergens: "ALLERGENI" },
-        'EN': { loader: "LOADING", info: "INFO", allergens: "ALLERGENS" },
-        'DE': { loader: "LADEN", info: "INFO", allergens: "ALLERGENE" }
+        'IT': { loader: "CARICAMENTO", BEVANDE: "BEVANDE", CIBO: "CIBO" },
+        'EN': { loader: "LOADING", BEVANDE: "DRINKS", CIBO: "FOOD" },
+        'DE': { loader: "LADEN", BEVANDE: "GETRÄNKE", CIBO: "SPEISEN" }
     };
 
     const catNames = {
@@ -178,125 +190,93 @@
         'Cucina': { IT: 'Cucina', EN: 'Kitchen', DE: 'Küche' }
     };
     
-    const SHEET_BASE_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVBgF1mKBTxorPi079dl_2ISJ9RHoZDgM4HXEUfF_mcAKrfI0W0jPP3AdhVF5f0g7EB5xfzTgoEiLQ/pub?output=csv';
     let menuData = {};
     let currentLang = 'IT';
-    let currentCat = 'Caffetteria';
+    let currentMacro = 'BEVANDE';
 
     function isValid(val) { return val && val.trim() !== '' && val.trim() !== '-'; }
 
     async function init() {
         document.getElementById('loader-text').innerText = uiTexts[currentLang].loader;
+        const baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVBgF1mKBTxorPi079dl_2ISJ9RHoZDgM4HXEUfF_mcAKrfI0W0jPP3AdhVF5f0g7EB5xfzTgoEiLQ/pub?gid=';
+        const urlSuffix = '&single=true&output=csv';
+
         for (let cat of Object.keys(GIDS)) {
             try {
-                const response = await fetch(`${SHEET_BASE_URL}&gid=${GIDS[cat]}`);
+                const response = await fetch(`${baseUrl}${GIDS[cat]}${urlSuffix}`);
                 const csvString = await response.text();
                 const results = Papa.parse(csvString, { header: true, skipEmptyLines: true });
                 menuData[cat] = results.data.filter(row => {
                     const keys = Object.keys(row);
                     return row[keys[9]] && row[keys[9]].trim().toUpperCase() === 'SI';
                 });
-            } catch (error) { console.error(error); }
+            } catch (e) { console.error(e); }
         }
         document.getElementById('loader').style.display = 'none';
-        renderTabs();
-        renderMenu('Caffetteria');
+        renderMacro('BEVANDE');
     }
 
-    function renderTabs() {
-        const tabsContainer = document.getElementById('tabs');
-        tabsContainer.innerHTML = Object.keys(GIDS).map(cat => `
-            <button onclick="renderMenu('${cat}')" id="btn-${cat}">
-                ${catNames[cat][currentLang]}
-            </button>
-        `).join('');
-    }
-
-    // Funzione per lo scroll dolce con Offset
-    function scrollToSubcat(id) {
-        const element = document.getElementById(id);
-        if (element) {
-            const headerOffset = 100; // Spazio per l'header fisso
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        }
-    }
-
-    function renderMenu(cat) {
-        currentCat = cat;
+    function renderMacro(macroKey) {
+        currentMacro = macroKey;
         document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-        const activeBtn = document.getElementById(`btn-${cat}`);
-        if(activeBtn) {
-            activeBtn.classList.add('active');
-            activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-        }
+        document.getElementById(`btn-${macroKey}`).classList.add('active');
+        
+        document.querySelector('#btn-BEVANDE .btn-txt').innerText = uiTexts[currentLang].BEVANDE;
+        document.querySelector('#btn-CIBO .btn-txt').innerText = uiTexts[currentLang].CIBO;
 
         const content = document.getElementById('menu-content');
-        const items = menuData[cat] || [];
-        const grouped = items.reduce((acc, item) => {
-            const keys = Object.keys(item);
-            const sc = isValid(item[keys[0]]) && item[keys[0]].toLowerCase() !== 'menu' ? item[keys[0]] : "Main"; 
-            if (!acc[sc]) acc[sc] = [];
-            acc[sc].push(item);
-            return acc;
-        }, {});
+        let html = '';
 
-        let html = `<h2 class="category-title">${catNames[cat][currentLang]}</h2>`;
-        const subcats = Object.keys(grouped);
-        const validSubcats = subcats.filter(sc => sc !== "Main");
+        MACROS[macroKey].forEach(catKey => {
+            const items = menuData[catKey] || [];
+            if(items.length === 0) return;
 
-        if(validSubcats.length > 0) {
-            html += `<div class="sub-filters">`;
-            validSubcats.forEach(sc => { 
-                const safeId = `sc-${sc.replace(/\s/g, '')}`;
-                html += `<button onclick="scrollToSubcat('${safeId}')" class="sub-filter-btn">${sc}</button>`; 
-            });
-            html += `</div>`;
-        }
+            html += `<h2 class="category-title">${catNames[catKey][currentLang]}</h2>`;
 
-        subcats.forEach(sc => {
-            if (sc !== "Main") { 
-                html += `<div id="sc-${sc.replace(/\s/g, '')}" class="subcat-header">${sc}</div>`; 
-            }
-            grouped[sc].forEach(item => {
+            const grouped = items.reduce((acc, item) => {
                 const keys = Object.keys(item);
-                const name = item[keys[1 + (currentLang === 'EN' ? 1 : (currentLang === 'DE' ? 2 : 0))]] || item[keys[1]];
-                const desc = item[keys[4 + (currentLang === 'EN' ? 1 : (currentLang === 'DE' ? 2 : 0))]] || item[keys[4]];
-                const price = item[keys[7]];
-                const allergens = item[keys[8]];
-                const variants = item[keys[10]];
+                const sc = isValid(item[keys[0]]) && item[keys[0]].toLowerCase() !== 'menu' ? item[keys[0]] : "Main"; 
+                if (!acc[sc]) acc[sc] = [];
+                acc[sc].push(item);
+                return acc;
+            }, {});
 
-                html += `
-                    <div class="menu-item">
-                        <div class="item-details">
-                            <div class="item-name">${name}</div>
-                            ${isValid(desc) ? `<div class="item-desc">${desc}</div>` : ''}
-                            <div class="item-meta">
-                                ${isValid(variants) ? `<span><span class="meta-label">${uiTexts[currentLang].info}:</span> ${variants}</span>` : ''}
-                                ${isValid(allergens) ? `<span><span class="meta-label">${uiTexts[currentLang].allergens}:</span> ${allergens}</span>` : ''}
+            Object.keys(grouped).forEach(sc => {
+                if (sc !== "Main") { 
+                    // Normalizzazione per evitare problemi con spazi o maiuscole
+                    const scTrimmed = sc.trim();
+                    let tSc = (subcatTranslations[scTrimmed] && subcatTranslations[scTrimmed][currentLang]) 
+                              ? subcatTranslations[scTrimmed][currentLang] 
+                              : scTrimmed;
+                    html += `<div class="subcat-header">${tSc}</div>`; 
+                }
+                grouped[sc].forEach(item => {
+                    const keys = Object.keys(item);
+                    const name = item[keys[1 + (currentLang === 'EN' ? 1 : (currentLang === 'DE' ? 2 : 0))]] || item[keys[1]];
+                    const desc = item[keys[4 + (currentLang === 'EN' ? 1 : (currentLang === 'DE' ? 2 : 0))]] || item[keys[4]];
+                    const price = item[keys[7]];
+                    html += `
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <div class="item-name">${name}</div>
+                                ${isValid(desc) ? `<div class="item-desc">${desc}</div>` : ''}
                             </div>
-                        </div>
-                        <div class="item-price">€ ${price}</div>
-                    </div>
-                `;
+                            <div class="item-price">€ ${price}</div>
+                        </div>`;
+                });
             });
         });
         content.innerHTML = html;
-        window.scrollTo(0, 0);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     function changeLang(lang) {
         currentLang = lang;
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(`l-${lang}`).classList.add('active');
-        renderTabs();
-        renderMenu(currentCat);
+        renderMacro(currentMacro);
     }
+
     init();
 </script>
 </body>
